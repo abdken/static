@@ -10,6 +10,14 @@ pipeline {
                 '''
             }
         }
-        
+              
+        stage('Upload to AWS') {
+            steps {
+                withAWS(region:'ca-central-1',credentials:'default') {
+                sh 'echo "Uploading content with AWS creds"'
+                    s3Upload(pathStyleAccessEnabled: true, payloadSigningEnabled: true, file:'index.html', bucket:'static-devops-pipeline')
+                }
+            }
+        }
     }
 }
