@@ -10,10 +10,10 @@ pipeline {
                 '''
             }
         }
-              
+
         stage('Upload to AWS') {
             steps {
-                withAWS(region:'ca-central-1',credentials:'default') {
+                withAWS(region:'ca-central-1',credentials:'a3654d1a-37fa-468a-8157-cb7165d12d50') {
                 sh 'echo "Uploading content with AWS creds"'
                     s3Upload(pathStyleAccessEnabled: true, payloadSigningEnabled: true, file:'index.html', bucket:'static-devops-pipeline')
                 }
